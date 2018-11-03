@@ -17,10 +17,10 @@ let active_page = null;
 //
 async function load_page(page) {
     return api(links[page].getAttribute("data-href"))
-    .then(a => a.reduce((ac,cv) => {
+    .then(a => a.reduce((ac,cv,i) => {
         return ac.then(api(`/item/${cv}`).then(b => {
             const {id, title, url, score, by, time} = b;
-            const el = create_post(id, title, url, score, by, time);
+            const el = create_post(i, id, title, url, score, by, time);
             main.appendChild(el);
         }));
     }, Promise.resolve()))
@@ -28,8 +28,8 @@ async function load_page(page) {
         console.log(a);
     });
 }
-function create_post(id, title, url, score, by, time) {
-    return (create_element("div", new Map().set("class","post"), [
+function create_post(i, id, title, url, score, by, time) {
+    return (create_element("div", new Map().set("class","post").set("style",`order:${i};`), [
         create_post_top(id, title, url),
         create_element("div", undefined, [
             dcTN(`${score} points by `),
