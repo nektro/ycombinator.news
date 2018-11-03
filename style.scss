@@ -1,17 +1,16 @@
 body {
     margin: 8px;
     font-family: 'Verdana', 'Geneva', 'Tahoma', sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr minmax(85%, auto) 1fr;
 
     a {
         text-decoration: none;
     }
     header {
+        grid-column: 2 / 3;
         display: flex;
         flex-direction: row;
-        min-width: 85%;
         background-color: #ff6600;
         align-items: center;
 
@@ -35,12 +34,12 @@ body {
         }
     }
     main {
+        grid-column: 2 / 3;
         display: flex;
         flex-direction: column;
         font-size: 14px;
         background-color: #f6f6ef;
         color: #828282;
-        min-width: 85%;
 
         .post {
             margin: .5em;
